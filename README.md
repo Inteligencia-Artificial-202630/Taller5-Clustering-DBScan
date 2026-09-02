@@ -1,5 +1,4 @@
-# Taller 05: Clustering DBSCAN
-## Descripción
+# Taller 05 — Clustering DBSCAN
 
 Se genera un dataset sintético en 2D a partir de una imagen propia con figuras amorfas (82 regiones detectadas), se agregan outliers uniformes, y se aplica **DBSCAN**. Los parámetros `eps` y `MinPts` se estiman con un análisis de **k-distancia** (punto de inflexión / codo), y el desempeño se evalúa con **Silhouette Score**, **Davies-Bouldin Index** y **Calinski-Harabasz Score**.
 
