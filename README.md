@@ -1,1 +1,57 @@
-# Taller-05-Clustering-DBScan
+# Taller 05: Clustering DBSCAN
+## Descripción
+
+Se genera un dataset sintético en 2D a partir de una imagen propia con figuras amorfas (82 regiones detectadas), se agregan outliers uniformes, y se aplica **DBSCAN**. Los parámetros `eps` y `MinPts` se estiman con un análisis de **k-distancia** (punto de inflexión / codo), y el desempeño se evalúa con **Silhouette Score**, **Davies-Bouldin Index** y **Calinski-Harabasz Score**.
+
+## Cómo funciona
+
+1. **Generación de datos:** se binariza la imagen base y se detectan regiones amorfas; se muestrean puntos proporcionalmente al área de cada región (para no fragmentar trazos largos) y se agregan outliers uniformes (8% de los puntos de señal).
+2. **Estimación de `eps`/`MinPts`:** se calcula la curva de k-distancia y se ubica el codo; luego se barre un rango de `eps` alrededor del codo combinado con varios `MinPts`, descartando combinaciones con pocos clústeres o demasiado ruido.
+3. **Modelo final:** se ajusta DBSCAN con la mejor combinación (mayor silueta) y se visualiza el resultado.
+4. **Evaluación:** se reportan las tres métricas de desempeño y la proporción de outliers detectados.
+
+## Resultados
+
+**1. Datos sintéticos generados (señal + outliers)**
+
+<img width="1347" height="794" alt="image" src="https://github.com/user-attachments/assets/159bd1a2-49a0-42ee-b8f0-68e35991e417" />
+
+
+**2. Gráfico de k-distancia (estimación del codo / eps)**
+
+<img width="1190" height="490" alt="image" src="https://github.com/user-attachments/assets/5bcc9ed0-b8f4-4a25-9992-3af4bc984e2b" />
+
+
+**3. Clustering final con DBSCAN**
+
+<img width="1278" height="788" alt="image" src="https://github.com/user-attachments/assets/238d16f9-3061-4001-87c9-1af2a27d72a2" />
+
+
+## Ejecución
+
+```bash
+pip install numpy pandas matplotlib pillow scipy scikit-learn
+```
+
+Estructura de archivos:
+
+```
+.
+├── Taller-05-Clustering-DBScan_optimizado.ipynb
+└── IMG/
+    └── our_image.png
+```
+
+Luego, abrir y correr el notebook:
+
+```bash
+jupyter notebook Taller-05-Clustering-DBScan_optimizado.ipynb
+```
+## Autoras
+
+Natalia Carpintero, Paula Núñez e Isabella Arrieta.
+
+## Referencias
+
+- scikit-learn — *Clustering Metrics* (`sklearn.metrics`)
+- scikit-learn — *2.3. Clustering: Clustering performance evaluation*
